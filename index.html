@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baby Shower de Aline</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink-50: #fdf2f8;
+            --pink-100: #fce7f3;
+            --pink-200: #fbcfe8;
+            --pink-300: #f9a8d4;
+            --pink-400: #f472b6;
+            --pink-500: #ec4899;
+            --pink-600: #db2777;
+            --pink-700: #be185d;
+            --pink-800: #9d174d;
+            --pink-900: #831843;
+            
+            --purple-50: #faf5ff;
+            --purple-100: #f3e8ff;
+            --purple-200: #e9d5ff;
+            --purple-300: #d8b4fe;
+            --purple-400: #c084fc;
+            --purple-500: #a855f7;
+            --purple-600: #9333ea;
+            --purple-700: #7e22ce;
+            --purple-800: #6b21a8;
+            --purple-900: #581c87;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--pink-50), var(--purple-50));
+            color: #333;
+            overflow-x: hidden;
+            min-height: 100vh;
+            padding-bottom: 100px;
+        }
+
+        /* Decoraciones */
+        .decorations {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .decoration-circle {
+            position: absolute;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .decoration-circle:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            width: 8px;
+            height: 8px;
+            background-color: var(--pink-300);
+        }
+
+        .decoration-circle:nth-child(2) {
+            top: 20%;
+            right: 20%;
+            width: 12px;
+            height: 12px;
+            background-color: var(--purple-300);
+            animation-delay: 1s;
+        }
+
+        .decoration-circle:nth-child(3) {
+            bottom: 15%;
+            left: 25%;
+            width: 8px;
+            height: 8px;
+            background-color: var(--pink-300);
+            animation-delay: 2s;
+        }
+
+        .decoration-circle:nth-child(4) {
+            bottom: 25%;
+            right: 25%;
+            width: 12px;
+            height: 12px;
+            background-color: var(--purple-300);
+            animation-delay: 3s;
+        }
+
+        .balloons {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .balloon {
+            position: absolute;
+            border-radius: 50%;
+            animation: bounce 4s infinite;
+        }
+
+        .balloon:nth-child(1) {
+            left: 10%;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle at 30% 30%, var(--pink-300), var(--pink-500));
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .balloon:nth-child(2) {
+            right: 10%;
+            top: 0;
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle at 30% 30%, var(--purple-300), var(--purple-500));
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            animation-delay: 1s;
+        }
+
+        .balloon:nth-child(3) {
+            left: 30%;
+            top: 10px;
+            width: 45px;
+            height: 45px;
+            background: radial-gradient(circle at 30% 30%, var(--pink-200), var(--pink-400));
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            animation-delay: 2s;
+        }
+
+        .balloon:nth-child(4) {
+            right: 30%;
+            top: 5px;
+            width: 55px;
+            height: 55px;
+            background: radial-gradient(circle at 30% 30%, var(--purple-200), var(--purple-400));
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            animation-delay: 3s;
+        }
+
+        /* Encabezado */
+        header {
+            position: relative;
+            z-index: 10;
+            padding: 4rem 1rem;
+            background: linear-gradient(135deg, var(--pink-500), var(--purple-500));
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        }
+
+        .header-icon {
+            position: absolute;
+            top: -1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3.5rem;
+            height: 3.5rem;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-icon i {
+            font-size: 1.8rem;
+            color: var(--pink-500);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto;
+            font-style: italic;
+        }
+
+        .divider {
+            width: 80px;
+            height: 3px;
+            background: white;
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        /* Secciones */
+        section {
+            position: relative;
+            z-index: 10;
+            padding: 4rem 1rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--pink-800);
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, var(--pink-500), var(--purple-500));
+            border-radius: 2px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Tarjeta de información del bebé */
+        .baby-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            padding: 2.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .baby-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .baby-card::before, .baby-card::after {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--pink-100);
+            z-index: -1;
+        }
+
+        .baby-card::before {
+            top: -30px;
+            left: -30px;
+        }
+
+        .baby-card::after {
+            bottom: -30px;
+            right: -30px;
+            background: var(--purple-100);
+        }
+
+        .baby-info-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .baby-avatar {
+            flex: 0 0 220px;
+            position: relative;
+        }
+
+        .baby-avatar img {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, var(--pink-100), var(--purple-100));
+            padding: 10px;
+            object-fit: cover;
+        }
+
+        .baby-details {
+            flex: 1;
+            min-width: 300px;
+            text-align: left;
+        }
+
+        .baby-name {
+            background: linear-gradient(135deg, var(--pink-500), var(--purple-500));
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .baby-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--pink-700);
+            font-size: 1.1rem;
+        }
+
+        .info-item i {
+            color: var(--pink-500);
+            font-size: 1.3rem;
+            min-width: 30px;
+        }
+
+        /* Detalles del evento */
+        .event-details {
+            background: linear-gradient(135deg, var(--pink-50), var(--purple-50));
+            clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%);
+            padding: 6rem 1rem;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Nuevo diseño para la sección de fecha */
+        .date-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 2.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #fff, #fdf2f8);
+            border: 2px solid var(--pink-200);
+        }
+
+        .date-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .date-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--pink-400), var(--purple-400));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .date-icon i {
+            color: white;
+            font-size: 2.5rem;
+        }
+
+        .date-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--pink-700);
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .date-title::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--pink-500);
+            border-radius: 2px;
+        }
+
+        .date-content {
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .date-grid {
+            display: grid;
+            grid-template-columns: auto auto;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+            text-align: left;
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .date-label {
+            font-weight: 600;
+            color: var(--purple-700);
+            text-align: right;
+        }
+
+        .date-value {
+            font-weight: 700;
+            color: var(--pink-700);
+        }
+
+        .day-value {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--purple-700);
+            margin: 0.5rem 0;
+        }
+
+        .month-value {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--pink-600);
+            margin-bottom: 0.5rem;
+        }
+
+        .year-value {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--purple-600);
+            margin-bottom: 1.5rem;
+        }
+
+        .time-container {
+            background: linear-gradient(135deg, var(--pink-100), var(--purple-100));
+            border-radius: 15px;
+            padding: 1rem 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            margin: 1rem 0;
+            border: 2px dashed var(--pink-300);
+        }
+
+        .time-icon {
+            margin-right: 10px;
+            color: var(--pink-600);
+        }
+
+        .time-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--pink-700);
+        }
+
+        .countdown-container {
+            background: linear-gradient(135deg, var(--pink-50), var(--purple-50));
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border: 2px solid var(--pink-200);
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+        }
+
+        .countdown-label {
+            font-size: 1.1rem;
+            color: var(--pink-700);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .countdown-item {
+            background: white;
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 90px;
+            position: relative;
+        }
+
+        /* Mejoras específicas para el elemento de segundos */
+        .seconds-item {
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(135deg, var(--purple-50), #f8f4ff);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 2px solid var(--purple-200);
+        }
+
+        .seconds-item::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--purple-100), transparent);
+            border-radius: 12px;
+            z-index: -1;
+        }
+
+        .countdown-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--pink-700);
+            font-family: monospace;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+        }
+
+        .seconds-item .countdown-value {
+            font-size: 2rem;
+            color: var(--purple-700);
+            font-weight: 900;
+        }
+
+        .countdown-unit {
+            font-size: 0.9rem;
+            color: var(--purple-600);
+            font-weight: 500;
+            text-transform: uppercase;
+            margin-top: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        .seconds-item .countdown-unit {
+            font-weight: 600;
+            color: var(--purple-700);
+            background: rgba(126, 34, 206, 0.1);
+            padding: 4px 8px;
+            border-radius: 20px;
+            width: fit-content;
+            margin: 8px auto 0;
+            letter-spacing: 0.8px;
+        }
+        
+        /* Dónde - Diseño mejorado */
+        .where-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #fff, #f8f4ff);
+            border: 2px solid var(--purple-200);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .where-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .detail-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--pink-400), var(--purple-400));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .detail-icon i {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .detail-title {
+            font-size: 1.8rem;
+            color: var(--pink-700);
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .detail-content {
+            color: var(--pink-800);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .detail-content p {
+            margin-bottom: 0.8rem;
+        }
+
+        .location-name {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.5rem;
+            color: var(--purple-700);
+            margin-bottom: 0.5rem;
+        }
+
+        .location-address {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--pink-700);
+            background: var(--pink-50);
+            padding: 0.8rem 1.2rem;
+            border-radius: 10px;
+            display: inline-block;
+            margin: 0.5rem 0;
+        }
+
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 5px solid white;
+            margin-top: auto;
+            flex-grow: 1;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+            border: none;
+        }
+
+        /* Formulario RSVP */
+        .rsvp-container {
+            background: linear-gradient(135deg, var(--pink-100), var(--purple-100));
+            border-radius: 20px;
+            padding: 3px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .rsvp-inner {
+            background: white;
+            border-radius: 18px;
+            padding: 2.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background: linear-gradient(135deg, var(--pink-50), var(--purple-50));
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .radio-option:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .radio-option.selected {
+            border-color: var(--pink-500);
+            background: linear-gradient(135deg, var(--pink-100), var(--purple-100));
+        }
+
+        .radio-option input[type="radio"] {
+            margin-right: 1rem;
+            width: 20px;
+            height: 20px;
+            accent-color: var(--pink-500);
+        }
+
+        .radio-option label {
+            font-size: 1.1rem;
+            color: var(--pink-800);
+            font-weight: 500;
+            cursor: pointer;
+            flex-grow: 1;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--pink-200);
+            border-radius: 12px;
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 120px;
+            transition: all 0.3s ease;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--pink-500);
+            box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.2);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--pink-500), var(--purple-500));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Sección de regalos simplificada */
+        .gift-section {
+            background: linear-gradient(135deg, var(--pink-50), var(--purple-50));
+            clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%);
+            padding: 6rem 1rem;
+        }
+
+        .gift-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            padding: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .gift-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, var(--pink-500), var(--purple-500));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gift-icon i {
+            color: white;
+            font-size: 3rem;
+        }
+
+        .gift-text {
+            font-size: 1.3rem;
+            color: var(--pink-800);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        .gift-note {
+            margin-top: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--purple-700);
+            font-weight: 500;
+        }
+
+        /* Galería */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            height: 280px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .gallery-item::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .gallery-item:hover::before {
+            opacity: 1;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            color: white;
+            z-index: 2;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Sección de agradecimiento */
+        .thanks-section {
+            background: linear-gradient(135deg, var(--pink-500), var(--purple-500));
+            text-align: center;
+            padding: 6rem 1rem;
+            clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
+            margin-top: 4rem;
+        }
+
+        .thanks-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .thanks-icon i {
+            color: white;
+            font-size: 2.5rem;
+        }
+
+        .thanks-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .thanks-text {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            line-height: 1.7;
+        }
+
+        .contact-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            color: var(--pink-500);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .contact-link:hover {
+            transform: translateY(-5px);
+            color: var(--purple-500);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        /* Pie de página */
+        footer {
+            background: linear-gradient(135deg, var(--pink-700), var(--purple-700));
+            padding: 2rem 1rem;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            margin-top: -50px;
+        }
+
+        .footer-text {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-text:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Animaciones */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-30px);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .baby-card, .date-card, .gift-card, .where-card {
+                padding: 1.5rem;
+            }
+            
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gift-text {
+                font-size: 1.1rem;
+            }
+            
+            .day-value {
+                font-size: 2rem;
+            }
+            
+            .month-value {
+                font-size: 1.5rem;
+            }
+            
+            .time-text {
+                font-size: 1.5rem;
+            }
+            
+            .countdown-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .detail-title {
+                font-size: 1.5rem;
+            }
+            
+            .location-name {
+                font-size: 1.3rem;
+            }
+            
+            .location-address {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Elementos decorativos -->
+    <div class="decorations">
+        <div class="decoration-circle"></div>
+        <div class="decoration-circle"></div>
+        <div class="decoration-circle"></div>
+        <div class="decoration-circle"></div>
+    </div>
+    
+    <div class="balloons">
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+    </div>
+
+    <!-- Encabezado -->
+    <header>
+        <div class="header-icon">
+            <i class="fas fa-baby"></i>
+        </div>
+        <h1>Baby Shower de Aileen</h1>
+        <div class="divider"></div>
+        <p class="subtitle">Te invitamos a celebrar la llegada de nuestra pequeña Aline</p>
+    </header>
+
+    <!-- Información del bebé con avatar personalizado -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Nuestra Princesa</h2>
+            <div class="baby-card">
+                <div class="baby-info-container">
+                    <div class="baby-avatar">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=300" alt="Aline">
+                    </div>
+                    <div class="baby-details">
+                        <div class="baby-name">Bienvenida Aline Galdamez Castillo!</div>
+                        <div class="baby-info">
+                            <div class="info-item">
+                                <i class="fas fa-calendar-day"></i>
+                                <span>Fecha esperada de nacimiento: <strong>15 de septiembre de 2025</strong></span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-user-friends"></i>
+                                <span>Padres: <strong>Francisco Ronal Galdamez Funes & Helen Elizabeth Castillo Ayala</strong></span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-heart"></i>
+                                <span>Peso esperado: <strong>3.2 kg</strong></span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-ruler"></i>
+                                <span>Estatura esperada: <strong>50 cm</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detalles del evento - Sección de Cuándo mejorada -->
+    <section class="event-details">
+        <div class="container">
+            <h2 class="section-title">Detalles del Evento</h2>
+            <div class="details-grid">
+                <!-- Cuándo - Diseño mejorado -->
+                <div class="date-card">
+                    <div class="date-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3 class="date-title">Cuándo</h3>
+                    
+                    <div class="date-content">
+                        <div class="day-value">Sábado, 30</div>
+                        <div class="month-value">Agosto</div>
+                        <div class="year-value">2025</div>
+                        
+                        <div class="time-container">
+                            <span class="time-icon"><i class="fas fa-clock"></i></span>
+                            <span class="time-text">2:00 PM</span>
+                        </div>
+                    </div>
+                    
+                    <div class="countdown-container">
+                        <div class="countdown-label">Faltan para el gran día:</div>
+                        <div class="countdown-grid">
+                            <div class="countdown-item">
+                                <div class="countdown-value">53</div>
+                                <div class="countdown-unit">Días</div>
+                            </div>
+                            <div class="countdown-item">
+                                <div class="countdown-value">22</div>
+                                <div class="countdown-unit">Horas</div>
+                            </div>
+                            <div class="countdown-item">
+                                <div class="countdown-value">22</div>
+                                <div class="countdown-unit">Minutos</div>
+                            </div>
+                            <div class="countdown-item seconds-item">
+                                <div class="countdown-value">23</div>
+                                <div class="countdown-unit">Segundos</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dónde - Diseño mejorado -->
+                <div class="where-card">
+                    <div class="detail-header">
+                        <div class="detail-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3 class="detail-title">Dónde</h3>
+                    </div>
+                    <div class="detail-content">
+                        <div class="location-name">En casa de mis bisabuelos</div>
+                        <div class="location-address">3VW2+9G, Cantón Quitasol</div>
+                        <p>Un lugar especial lleno de amor y recuerdos familiares, perfecto para dar la bienvenida a nuestra pequeña Aline.</p>
+                    </div>
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d342.0563951441907!2d-89.14090279778992!3d14.081525197544087!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f631379200b2991%3A0x10b3afb0bd23d31f!2sEl%20sombreron%20Guanaco!5e0!3m2!1ses!2ssv!4v1751928517594!5m2!1ses!2ssv" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulario RSVP -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Confirmación de Asistencia</h2>
+            <div class="rsvp-container">
+                <div class="rsvp-inner">
+                    <div id="rsvp-form">
+                        <div class="form-group">
+                            <span class="detail-content">¿Asistirás al baby shower?</span>
+                            <div class="radio-group">
+                                <div class="radio-option" onclick="selectOption('yes')">
+                                    <input type="radio" id="attending-yes" name="attending" value="yes">
+                                    <label for="attending-yes">Sí, estaré presente</label>
+                                </div>
+                                <div class="radio-option" onclick="selectOption('no')">
+                                    <input type="radio" id="attending-no" name="attending" value="no">
+                                    <label for="attending-no">Lamentablemente no puedo asistir</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message" class="detail-content">Mensaje (opcional)</label>
+                            <textarea id="message" placeholder="Envía un mensaje a los futuros padres..."></textarea>
+                        </div>
+                        
+                        <button id="submit-btn" class="submit-btn" disabled>Confirmar Asistencia</button>
+                    </div>
+                    
+                    <div id="thank-you" style="display: none;">
+                        <div style="text-align: center; padding: 2rem;">
+                            <div style="display: inline-block; padding: 1.5rem; background: linear-gradient(135deg, #d1fae5, #a7f3d0); border-radius: 50%; margin-bottom: 1.5rem;">
+                                <i class="fas fa-check" style="font-size: 2.5rem; color: #10b981;"></i>
+                            </div>
+                            <h3 style="font-size: 1.8rem; color: var(--pink-800); margin-bottom: 1rem;">¡Gracias por tu confirmación!</h3>
+                            <p style="color: var(--pink-700); margin-bottom: 1.5rem;">Estamos emocionados de celebrar contigo.</p>
+                            <button onclick="resetForm()" style="background: linear-gradient(135deg, var(--pink-500), var(--purple-500)); color: white; border: none; padding: 0.8rem 1.8rem; border-radius: 50px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
+                                Modificar Respuesta
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de regalos simplificada -->
+    <section class="gift-section">
+        <div class="container">
+            <h2 class="section-title">Regalos</h2>
+            <div class="gift-card">
+                <div class="gift-icon">
+                    <i class="fas fa-gift"></i>
+                </div>
+                <p class="gift-text">
+                    Tu presencia es el mejor regalo que podemos recibir en este día tan especial.
+                </p>
+                <p class="gift-note">
+                    Si deseas traer un detalle para nuestra pequeña Aline, 
+                    cualquier regalo será recibido con mucho amor y agradecimiento.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galería de fotos -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Nuestros Momentos</h2>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=600" alt="Preparativos">
+                    <div class="gallery-caption">Preparando la llegada de Aline</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1503514025761-5b2c7b0f08d6?q=80&w=600" alt="Cuarto del bebé">
+                    <div class="gallery-caption">Decorando el cuarto del bebé</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1581595219316-5e6dcee313c5?q=80&w=600" alt="Ecografía">
+                    <div class="gallery-caption">Echando la última ecografía</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de agradecimiento -->
+    <section class="thanks-section">
+        <div class="container">
+            <div class="thanks-icon">
+                <i class="fas fa-heart"></i>
+            </div>
+            <h2 class="thanks-title">¡Gracias por ser parte de nuestra alegría!</h2>
+            <p class="thanks-text">
+                Estamos emocionados de compartir este momento tan especial con todos ustedes. 
+                Su amor y apoyo significan el mundo para nosotros y para nuestra pequeña Aline.
+            </p>
+            
+            <div class="contact-icons">
+                <a href="https://wa.me/123456789" class="contact-link">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="mailto:helen.castillo@example.com" class="contact-link">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="tel:+123456789" class="contact-link">
+                    <i class="fas fa-phone"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pie de página -->
+    <footer>
+        <div class="container">
+            <p class="footer-text">© 2025 Baby Shower de Aline Galdamez Castillo</p>
+            <p class="footer-text">Diseñado con ❤️ por los futuros papás</p>
+        </div>
+    </footer>
+
+    <script>
+        // Contador regresivo mejorado
+        function updateCountdown() {
+            const eventDate = new Date('2025-08-30T14:00:00');
+            const now = new Date();
+            const diff = eventDate - now;
+            
+            if (diff <= 0) {
+                document.querySelectorAll('.countdown-value')[0].textContent = '00';
+                document.querySelectorAll('.countdown-value')[1].textContent = '00';
+                document.querySelectorAll('.countdown-value')[2].textContent = '00';
+                document.querySelectorAll('.countdown-value')[3].textContent = '00';
+                return;
+            }
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / 1000 / 60) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+            
+            document.querySelectorAll('.countdown-value')[0].textContent = days.toString().padStart(2, '0');
+            document.querySelectorAll('.countdown-value')[1].textContent = hours.toString().padStart(2, '0');
+            document.querySelectorAll('.countdown-value')[2].textContent = minutes.toString().padStart(2, '0');
+            document.querySelectorAll('.countdown-value')[3].textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        // Actualizar contador cada segundo
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Ejecutar inmediatamente
+        
+        // Manejo del formulario RSVP
+        function selectOption(value) {
+            // Actualizar selección visual
+            document.querySelectorAll('.radio-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            const selectedOption = value === 'yes' 
+                ? document.querySelector('#attending-yes').parentElement 
+                : document.querySelector('#attending-no').parentElement;
+            
+            selectedOption.classList.add('selected');
+            
+            // Marcar radio button
+            document.querySelector(`#attending-${value}`).checked = true;
+            
+            // Habilitar botón de envío
+            document.getElementById('submit-btn').disabled = false;
+        }
+        
+        document.getElementById('submit-btn').addEventListener('click', function() {
+            // Obtener valores del formulario
+            const attending = document.querySelector('input[name="attending"]:checked').value;
+            const message = document.getElementById('message').value;
+            
+            // Simular envío (en un caso real, aquí se enviaría a un servidor)
+            console.log('Respuesta:', { attending, message });
+            
+            // Mostrar mensaje de agradecimiento
+            document.getElementById('rsvp-form').style.display = 'none';
+            document.getElementById('thank-you').style.display = 'block';
+        });
+        
+        function resetForm() {
+            // Restablecer formulario
+            document.querySelectorAll('.radio-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            document.querySelectorAll('input[name="attending"]').forEach(radio => {
+                radio.checked = false;
+            });
+            
+            document.getElementById('message').value = '';
+            document.getElementById('submit-btn').disabled = true;
+            
+            // Mostrar formulario de nuevo
+            document.getElementById('rsvp-form').style.display = 'block';
+            document.getElementById('thank-you').style.display = 'none';
+        }
+        
+        // Inicializar
+        window.addEventListener('DOMContentLoaded', () => {
+            updateCountdown();
+        });
+    </script>
+</body>
+</html>
