@@ -1275,6 +1275,24 @@
             display: block;
         }
 
+        /* Nuevo estilo para el texto "Reproducir" */
+        .play-text {
+            margin-left: 10px;
+            color: var(--pink-700);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: opacity 0.3s ease, max-width 0.3s ease;
+            max-width: 100px;
+            opacity: 1;
+            white-space: nowrap;
+        }
+
+        .player-expanded .play-text {
+            max-width: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             h1 {
@@ -1351,6 +1369,10 @@
             .song-title {
                 font-size: 1rem;
             }
+            
+            .play-text {
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -1371,11 +1393,12 @@
         <div class="balloon"></div>
     </div>
 
-    <!-- Reproductor de música -->
+    <!-- Reproductor de música con texto "Reproducir" -->
     <div class="music-player" id="musicPlayer">
         <div class="play-btn" id="playBtn">
             <i class="fas fa-play"></i>
         </div>
+        <span class="play-text" id="playText">Reproducir</span>
         <div class="player-info">
             <div class="song-title" id="songTitle">Ojos color miel</div>
             <div class="artist" id="artist">Residente</div>
@@ -1438,12 +1461,12 @@
         </div>
     </section>
 
-    <!-- Detalles del evento - Sección de Cuándo mejorada -->
+    <!-- Detalles del evento - Sección de Cuándo con fecha actualizada -->
     <section class="event-details">
         <div class="container">
             <h2 class="section-title">Detalles del Evento</h2>
             <div class="details-grid">
-                <!-- Cuándo - Diseño mejorado -->
+                <!-- Cuándo - Con fecha actualizada -->
                 <div class="date-card">
                     <div class="date-icon">
                         <i class="fas fa-calendar-alt"></i>
@@ -1451,13 +1474,13 @@
                     <h3 class="date-title">Cuándo</h3>
 
                     <div class="date-content">
-                        <div class="day-value">Sábado, 30</div>
+                        <div class="day-value">Sábado, 16</div>
                         <div class="month-value">Agosto</div>
                         <div class="year-value">2025</div>
 
                         <div class="time-container">
                             <span class="time-icon"><i class="fas fa-clock"></i></span>
-                            <span class="time-text">2:00 PM</span>
+                            <span class="time-text">12:00 PM</span>
                         </div>
                     </div>
 
@@ -1465,19 +1488,19 @@
                         <div class="countdown-label">Faltan para el gran día:</div>
                         <div class="countdown-grid">
                             <div class="countdown-item">
-                                <div class="countdown-value">53</div>
+                                <div class="countdown-value" id="days">53</div>
                                 <div class="countdown-unit">Días</div>
                             </div>
                             <div class="countdown-item">
-                                <div class="countdown-value">22</div>
+                                <div class="countdown-value" id="hours">22</div>
                                 <div class="countdown-unit">Horas</div>
                             </div>
                             <div class="countdown-item">
-                                <div class="countdown-value">22</div>
+                                <div class="countdown-value" id="minutes">22</div>
                                 <div class="countdown-unit">Minutos</div>
                             </div>
                             <div class="countdown-item seconds-item">
-                                <div class="countdown-value">23</div>
+                                <div class="countdown-value" id="seconds">23</div>
                                 <div class="countdown-unit">Segundos</div>
                             </div>
                         </div>
@@ -1653,17 +1676,17 @@
     </audio>
 
     <script>
-        // Contador regresivo mejorado
+        // Contador regresivo actualizado con nueva fecha y hora
         function updateCountdown() {
-            const eventDate = new Date('2025-08-30T14:00:00');
+            const eventDate = new Date('2025-08-16T12:00:00'); // Nueva fecha y hora
             const now = new Date();
             const diff = eventDate - now;
 
             if (diff <= 0) {
-                document.querySelectorAll('.countdown-value')[0].textContent = '00';
-                document.querySelectorAll('.countdown-value')[1].textContent = '00';
-                document.querySelectorAll('.countdown-value')[2].textContent = '00';
-                document.querySelectorAll('.countdown-value')[3].textContent = '00';
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
                 return;
             }
 
@@ -1672,10 +1695,10 @@
             const minutes = Math.floor((diff / 1000 / 60) % 60);
             const seconds = Math.floor((diff / 1000) % 60);
 
-            document.querySelectorAll('.countdown-value')[0].textContent = days.toString().padStart(2, '0');
-            document.querySelectorAll('.countdown-value')[1].textContent = hours.toString().padStart(2, '0');
-            document.querySelectorAll('.countdown-value')[2].textContent = minutes.toString().padStart(2, '0');
-            document.querySelectorAll('.countdown-value')[3].textContent = seconds.toString().padStart(2, '0');
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
         }
 
         // Actualizar contador cada segundo
@@ -1749,7 +1772,7 @@
             document.getElementById('thank-you').style.display = 'none';
         }
 
-        // Reproductor de música
+        // Reproductor de música con texto "Reproducir"
         const musicPlayer = document.getElementById('musicPlayer');
         const playBtn = document.getElementById('playBtn');
         const audioPlayer = document.getElementById('audioPlayer');
@@ -1758,6 +1781,7 @@
         const changeSongBtn = document.getElementById('changeSongBtn');
         const songTitle = document.getElementById('songTitle');
         const artist = document.getElementById('artist');
+        const playText = document.getElementById('playText');
 
         // Estado del reproductor
         let isPlaying = false;
@@ -1768,9 +1792,11 @@
             if (isPlaying) {
                 audioPlayer.pause();
                 playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                playText.textContent = 'Reproducir';
             } else {
                 audioPlayer.play();
                 playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                playText.textContent = 'Pausar';
                 // Expandir el reproductor al iniciar
                 if (!isExpanded) {
                     togglePlayerSize();
@@ -1808,6 +1834,7 @@
                 // Reiniciar el reproductor
                 isPlaying = false;
                 playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                playText.textContent = 'Reproducir';
                 progressBar.style.width = '0%';
             }
         }
@@ -1816,7 +1843,7 @@
         playBtn.addEventListener('click', togglePlay);
         musicPlayer.addEventListener('click', function (e) {
             // Expandir al hacer clic en cualquier parte del reproductor
-            if (!isExpanded && e.target !== playBtn) {
+            if (!isExpanded && e.target !== playBtn && e.target !== playText) {
                 togglePlayerSize();
             }
         });
